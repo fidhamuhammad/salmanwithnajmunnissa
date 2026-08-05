@@ -1,24 +1,70 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Splash } from "@/components/wedding/Splash";
+import { Petals } from "@/components/wedding/Petals";
+import { Hero } from "@/components/wedding/Hero";
+import { Parents } from "@/components/wedding/Parents";
+import { Events } from "@/components/wedding/Events";
+import { MapSection } from "@/components/wedding/MapSection";
+import { Rsvp } from "@/components/wedding/Rsvp";
+import { Gallery } from "@/components/wedding/Gallery";
+import { Story } from "@/components/wedding/Story";
+import { Blessings } from "@/components/wedding/Blessings";
+import { Contact } from "@/components/wedding/Contact";
+import { FooterSection } from "@/components/wedding/FooterSection";
+import { FloatingBar } from "@/components/wedding/FloatingBar";
+import { wedding } from "@/lib/wedding-config";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = `${wedding.bride.name} & ${wedding.groom.name} — Wedding Invitation`;
+const description = `Together with their families, ${wedding.bride.name} and ${wedding.groom.name} invite you to celebrate their wedding. Ceremony, reception, venue map and RSVP.`;
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  validateSearch: (search: Record<string, unknown>) => ({
+    guest: typeof search["guest"] === "string" ? search["guest"].slice(0, 40) : undefined,
+  }),
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Invitation,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Invitation() {
+  const { guest } = Route.useSearch();
+  const guestName = guest ? guest.replace(/[^\p{L}\p{N}\s'.-]/gu, "").trim() || null : null;
+  const [splashOpen, setSplashOpen] = useState(true);
+  const [music, setMusic] = useState(false);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <main className="relative min-h-screen overflow-x-hidden">
+      <Petals />
+      <Splash
+        open={splashOpen}
+        guest={guestName}
+        onEnter={(withMusic) => {
+          setMusic(withMusic);
+          setSplashOpen(false);
+        }}
       />
-    </div>
+      <div className="relative z-10">
+        <Hero guest={guestName} />
+        <Parents />
+        <Events />
+        <MapSection />
+        <Story />
+        <Gallery />
+        <Rsvp guest={guestName} />
+        <Blessings />
+        <Contact />
+        <FooterSection />
+      </div>
+      <FloatingBar autoPlayMusic={music} />
+    </main>
   );
 }
