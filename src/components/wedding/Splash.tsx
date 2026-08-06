@@ -24,6 +24,16 @@ export function Splash({
         >
           <div className="relative w-full max-w-xl text-center">
             <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+              className="gold-text mb-6 font-display text-xl sm:text-2xl"
+              dir="rtl"
+              lang="ar"
+            >
+              بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </motion.p>
+            <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -38,9 +48,9 @@ export function Splash({
               transition={{ duration: 1.1, delay: 0.6 }}
               className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-4xl font-light sm:text-6xl"
             >
-              <span className="gold-text font-script">{wedding.bride.name}</span>
-              <Heart className="size-5 shrink-0 fill-primary text-primary sm:size-7" />
               <span className="gold-text font-script">{wedding.groom.name}</span>
+              <Heart className="size-5 shrink-0 fill-primary text-primary sm:size-7" />
+              <span className="gold-text font-script">{wedding.bride.name}</span>
             </motion.h1>
 
             <motion.div
@@ -56,7 +66,7 @@ export function Splash({
               transition={{ duration: 1, delay: 1.3 }}
               className="mt-6 font-display text-lg tracking-wide text-muted-foreground sm:text-xl"
             >
-              We invite you to celebrate our wedding.
+              We invite you to celebrate our Nikah.
             </motion.p>
 
             {guest ? (

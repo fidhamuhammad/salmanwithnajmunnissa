@@ -30,9 +30,9 @@ export function Hero({ guest }: { guest: string | null }) {
             Together with their families
           </p>
           <h1 className="mt-5 font-script text-5xl leading-[1.15] sm:text-7xl">
-            <span className="gold-text">{wedding.bride.name}</span>
-            <span className="mx-3 text-3xl text-primary sm:text-4xl">&amp;</span>
             <span className="gold-text">{wedding.groom.name}</span>
+            <span className="mx-3 text-3xl text-primary sm:text-4xl">&amp;</span>
+            <span className="gold-text">{wedding.bride.name}</span>
           </h1>
           <img
             src={floral}
@@ -57,9 +57,9 @@ export function Hero({ guest }: { guest: string | null }) {
           <div className="glass-card overflow-hidden p-3">
             <img
               src={heroCouple}
-              alt={`${wedding.bride.name} and ${wedding.groom.name} on their engagement day`}
-              width={1408}
-              height={1760}
+              alt={`${wedding.groom.name} and ${wedding.bride.name}`}
+              width={1024}
+              height={1280}
               className="h-[26rem] w-full rounded-[1rem] object-cover sm:h-[34rem]"
             />
           </div>

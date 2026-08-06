@@ -7,8 +7,6 @@ import { Parents } from "@/components/wedding/Parents";
 import { Events } from "@/components/wedding/Events";
 import { MapSection } from "@/components/wedding/MapSection";
 import { Rsvp } from "@/components/wedding/Rsvp";
-import { Gallery } from "@/components/wedding/Gallery";
-import { Story } from "@/components/wedding/Story";
 import { Blessings } from "@/components/wedding/Blessings";
 import { Contact } from "@/components/wedding/Contact";
 import { FooterSection } from "@/components/wedding/FooterSection";
@@ -57,8 +55,6 @@ function Invitation() {
         <Parents />
         <Events />
         <MapSection />
-        <Story />
-        <Gallery />
         <Rsvp guest={guestName} />
         <Blessings />
         <Contact />
