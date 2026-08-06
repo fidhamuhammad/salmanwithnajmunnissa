@@ -9,7 +9,7 @@ export function FooterSection() {
         <Heart className="mx-auto size-5 fill-primary text-primary" />
         <p className="mt-5 font-script text-3xl">
           <span className="gold-text">
-            {wedding.bride.name} &amp; {wedding.groom.name}
+            {wedding.groom.name} &amp; {wedding.bride.name}
           </span>
         </p>
         <p className="mt-4 font-display text-lg text-muted-foreground">

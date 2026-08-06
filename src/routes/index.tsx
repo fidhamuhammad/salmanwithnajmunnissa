@@ -7,16 +7,14 @@ import { Parents } from "@/components/wedding/Parents";
 import { Events } from "@/components/wedding/Events";
 import { MapSection } from "@/components/wedding/MapSection";
 import { Rsvp } from "@/components/wedding/Rsvp";
-import { Gallery } from "@/components/wedding/Gallery";
-import { Story } from "@/components/wedding/Story";
 import { Blessings } from "@/components/wedding/Blessings";
 import { Contact } from "@/components/wedding/Contact";
 import { FooterSection } from "@/components/wedding/FooterSection";
 import { FloatingBar } from "@/components/wedding/FloatingBar";
 import { wedding } from "@/lib/wedding-config";
 
-const title = `${wedding.bride.name} & ${wedding.groom.name} — Wedding Invitation`;
-const description = `Together with their families, ${wedding.bride.name} and ${wedding.groom.name} invite you to celebrate their wedding. Ceremony, reception, venue map and RSVP.`;
+const title = `${wedding.groom.name} & ${wedding.bride.name} — Nikah Invitation`;
+const description = `Together with their families, ${wedding.groom.name} and ${wedding.bride.name} invite you to their Nikah on Sunday, 23 August 2026 at ${wedding.nikah.venue}. Venue map, directions and RSVP.`;
 
 export const Route = createFileRoute("/")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -57,8 +55,6 @@ function Invitation() {
         <Parents />
         <Events />
         <MapSection />
-        <Story />
-        <Gallery />
         <Rsvp guest={guestName} />
         <Blessings />
         <Contact />

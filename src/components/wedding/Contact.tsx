@@ -3,8 +3,8 @@ import { Reveal, SectionTitle } from "./Reveal";
 import { wedding } from "@/lib/wedding-config";
 
 const families = [
-  { label: "Bride's Family", name: wedding.bride.parents.father, phone: wedding.bride.phone },
   { label: "Groom's Family", name: wedding.groom.parents.father, phone: wedding.groom.phone },
+  { label: "Bride's Family", name: wedding.bride.parents.father, phone: wedding.bride.phone },
 ];
 
 export function Contact() {
