@@ -32,17 +32,14 @@ function icsHref(title: string, location: string, start: Date) {
   return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
 }
 
-const events = [
-  { ...wedding.nikah, start: new Date(wedding.date) },
-  { ...wedding.reception, start: new Date(new Date(wedding.date).getTime() + 86400000 + 3 * 3600000) },
-];
+const events = [{ ...wedding.nikah, start: new Date(wedding.date) }];
 
 export function Events() {
   return (
     <section id="events" className="relative px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-5xl">
-        <SectionTitle overline="Save the moments" title="Wedding Celebrations" />
-        <div className="grid gap-6 lg:grid-cols-2">
+        <SectionTitle overline="Save the moment" title="Nikah Ceremony" />
+        <div className="mx-auto grid max-w-2xl gap-6">
           {events.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.12}>
               <div className="glass-card flex h-full flex-col p-8">
