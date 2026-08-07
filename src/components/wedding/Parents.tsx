@@ -21,8 +21,6 @@ export function Parents() {
                   {f.label}
                 </p>
                 <p className="mt-4 font-display text-xl">{f.people.father}</p>
-                <p className="my-1 text-xs text-primary">&amp;</p>
-                <p className="font-display text-xl">{f.people.mother}</p>
                 <div className="gold-rule mx-auto mt-5 max-w-[6rem]" />
                 <p className="mt-4 font-script text-lg text-primary">{f.name}</p>
               </div>
