@@ -8,7 +8,6 @@ import { Events } from "@/components/wedding/Events";
 import { MapSection } from "@/components/wedding/MapSection";
 import { Rsvp } from "@/components/wedding/Rsvp";
 import { Blessings } from "@/components/wedding/Blessings";
-import { Contact } from "@/components/wedding/Contact";
 import { FooterSection } from "@/components/wedding/FooterSection";
 import { FloatingBar } from "@/components/wedding/FloatingBar";
 import { wedding } from "@/lib/wedding-config";
@@ -57,7 +56,6 @@ function Invitation() {
         <MapSection />
         <Rsvp guest={guestName} />
         <Blessings />
-        <Contact />
         <FooterSection />
       </div>
       <FloatingBar autoPlayMusic={music} />
