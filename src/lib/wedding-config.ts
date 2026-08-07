@@ -1,13 +1,11 @@
 export const wedding = {
   bride: {
     name: "Najmunnisa",
-    parents: { father: "Mr. Sulaiman Musliyar", mother: "Mrs. —" },
-    phone: "+910000000000",
+    parents: { father: "Mr. Sulaiman Musliyar" },
   },
   groom: {
     name: "Salman Khan",
-    parents: { father: "Mr. Saleem", mother: "Mrs. —" },
-    phone: "+910000000001",
+    parents: { father: "Mr. Saleem" },
   },
   /** Wedding date & time (local). */
   date: "2026-08-23T11:00:00",
@@ -23,7 +21,7 @@ export const wedding = {
     "Othayoth Purayil Hall, Arambram - Elettil Rd, Kizhakkoth, Kacherimukku, Kerala 673572",
   music: {
     title: "Soft Nasheed",
-    src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=relaxing-145038.mp3",
+    src: "/nasheed.mp3",
   },
 } as const;
 
