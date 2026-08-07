@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Copy, Moon, Music, Pause, Share2, Sun, MessageCircle } from "lucide-react";
+import { Copy, Moon, Music, Pause, Share2, Sun } from "lucide-react";
 import { toast } from "sonner";
 import { wedding } from "@/lib/wedding-config";
 
@@ -84,15 +84,6 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
         <button onClick={copyLink} className={btn} aria-label="Copy invitation link">
           <Copy className="size-4 text-primary" />
         </button>
-        <a
-          href={`https://wa.me/${wedding.bride.phone.replace(/\D/g, "")}`}
-          target="_blank"
-          rel="noreferrer"
-          className={btn}
-          aria-label="Chat on WhatsApp"
-        >
-          <MessageCircle className="size-4 text-primary" />
-        </a>
       </div>
     </>
   );
