@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Copy, Moon, Music, Pause, Share2, Sun } from "lucide-react";
+import { Moon, Music, Pause, Sun } from "lucide-react";
 import { toast } from "sonner";
 import { wedding } from "@/lib/wedding-config";
 
@@ -11,6 +11,7 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
   useEffect(() => {
     if (!autoPlayMusic || !audioRef.current) return;
     audioRef.current.volume = 0.35;
+    audioRef.current.playbackRate = 0.85;
     audioRef.current
       .play()
       .then(() => setPlaying(true))
@@ -25,6 +26,7 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
       setPlaying(false);
     } else {
       audio.volume = 0.35;
+      audio.playbackRate = 0.85;
       audio
         .play()
         .then(() => setPlaying(true))
@@ -36,33 +38,6 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
-  }
-
-  async function share() {
-    const url = window.location.href;
-    const data = {
-      title: `${wedding.bride.name} & ${wedding.groom.name} — Wedding Invitation`,
-      text: "You are warmly invited to our wedding.",
-      url,
-    };
-    if (navigator.share) {
-      try {
-        await navigator.share(data);
-        return;
-      } catch {
-        /* dismissed */
-      }
-    }
-    window.open(`https://wa.me/?text=${encodeURIComponent(`${data.text} ${url}`)}`, "_blank");
-  }
-
-  async function copyLink() {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      toast.success("Invitation link copied");
-    } catch {
-      toast.error("Could not copy the link");
-    }
   }
 
   const btn =
@@ -77,12 +52,6 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
         </button>
         <button onClick={toggleTheme} className={btn} aria-label="Toggle dark mode">
           {dark ? <Sun className="size-4 text-primary" /> : <Moon className="size-4 text-primary" />}
-        </button>
-        <button onClick={share} className={btn} aria-label="Share invitation">
-          <Share2 className="size-4 text-primary" />
-        </button>
-        <button onClick={copyLink} className={btn} aria-label="Copy invitation link">
-          <Copy className="size-4 text-primary" />
         </button>
       </div>
     </>
