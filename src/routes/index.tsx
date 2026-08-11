@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
 import { Splash } from "@/components/wedding/Splash";
 import { Petals } from "@/components/wedding/Petals";
 import { Hero } from "@/components/wedding/Hero";
@@ -35,19 +36,31 @@ function Invitation() {
   const { guest } = Route.useSearch();
   const guestName = guest ? guest.replace(/[^\p{L}\p{N}\s'.-]/gu, "").trim() || null : null;
   const [splashOpen, setSplashOpen] = useState(true);
-  const [music, setMusic] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+
+  function handleEnter(withMusic: boolean) {
+    setSplashOpen(false);
+    if (!withMusic) return;
+
+    // Must be called synchronously within this click-originated handler
+    // (no awaits before it) so iOS Safari treats it as a user gesture.
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.35;
+    audio
+      .play()
+      .then(() => setMusicPlaying(true))
+      .catch(() => {
+        setMusicPlaying(false);
+        toast.error("Music could not be played on this device.");
+      });
+  }
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <Petals />
-      <Splash
-        open={splashOpen}
-        guest={guestName}
-        onEnter={(withMusic) => {
-          setMusic(withMusic);
-          setSplashOpen(false);
-        }}
-      />
+      <Splash open={splashOpen} guest={guestName} onEnter={handleEnter} />
       <div className="relative z-10">
         <Hero guest={guestName} />
         <Parents />
@@ -56,7 +69,7 @@ function Invitation() {
         <Blessings />
         <FooterSection />
       </div>
-      <FloatingBar autoPlayMusic={music} />
+      <FloatingBar audioRef={audioRef} playing={musicPlaying} onPlayingChange={setMusicPlaying} />
     </main>
   );
 }

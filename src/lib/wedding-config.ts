@@ -1,5 +1,3 @@
-import nasheedAsset from "@/assets/nasheed.mp3.asset.json";
-
 export const wedding = {
   bride: {
     name: "Najmunnisa",
@@ -19,11 +17,10 @@ export const wedding = {
     address: "Arambram - Elettil Rd, Kizhakkoth, Kacherimukku, Kerala 673572",
     dressCode: "Ivory, champagne & gold — formal traditional",
   },
-  mapQuery:
-    "Othayoth Purayil Hall, Arambram - Elettil Rd, Kizhakkoth, Kacherimukku, Kerala 673572",
+  mapQuery: "Othayoth Purayil Hall, Arambram - Elettil Rd, Kizhakkoth, Kacherimukku, Kerala 673572",
   music: {
     title: "Al Jabiri (Slowed + Reverb) — Muhammad Al Muqit",
-    src: nasheedAsset.url,
+    src: "/audio/nasheed.mp3",
   },
 } as const;
 
