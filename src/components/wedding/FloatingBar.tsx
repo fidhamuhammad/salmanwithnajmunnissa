@@ -11,7 +11,6 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
   useEffect(() => {
     if (!autoPlayMusic || !audioRef.current) return;
     audioRef.current.volume = 0.35;
-    audioRef.current.playbackRate = 0.85;
     audioRef.current
       .play()
       .then(() => setPlaying(true))
@@ -26,13 +25,13 @@ export function FloatingBar({ autoPlayMusic }: { autoPlayMusic: boolean }) {
       setPlaying(false);
     } else {
       audio.volume = 0.35;
-      audio.playbackRate = 0.85;
       audio
         .play()
         .then(() => setPlaying(true))
         .catch(() => toast.error("Music could not be played on this device."));
     }
   }
+
 
   function toggleTheme() {
     const next = !dark;
